@@ -8,7 +8,7 @@ const DEBOUNCE_DELAY = 300;
 const countryInput = document.getElementById('search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
-console.log(countryInput);
+// console.log(countryList);
 
 countryInput.addEventListener(
   'input',
@@ -17,7 +17,7 @@ countryInput.addEventListener(
 
 function onCountryInput(e) {
   const name = e.target.value.trim();
-  console.log(name);
+  // console.log(name);
   if (name.length === 1) {
     alertTooManyMatches();
   } else if (name.length === 2) {
@@ -31,14 +31,12 @@ function onCountryInput(e) {
 
 function renderCountryList(countries) {
   onClear();
+  // console.log(countries);
   const markup = countries
-    .map(({ name, flags }) => {
-      return `
-          <li class="list country-list__item">
-              <img class="country-list__flag" src="${flags.svg}" alt="Flag of ${name.official}" width = 30px height = 30px>
-              <h2 class="country-list__name">${name.official}</h2>
-          </li>
-          `;
+    .map(({ flag, name }) => {
+      return `<li class="list container-text">
+      <img src='${flag}' width="50" height="30"/>
+      <h2 class="text">${name}</h2></li>`;
     })
     .join('');
   countryList.insertAdjacentHTML('beforeend', markup);
